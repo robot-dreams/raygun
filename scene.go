@@ -25,11 +25,8 @@ func (s scene) color(r ray) mgl32.Vec3 {
 		}
 	}
 	if closest != nil {
-		/*
-			n := sphere.reflect(r).direction.Normalize()
-			return n.Add(white).Mul(0.5)
-		*/
-		return s.color(closest.ray())
+		// return s.color(closest.ray())
+		return closest.normal.Add(white).Mul(0.5)
 	} else {
 		return s.backgroundColor(r)
 	}
