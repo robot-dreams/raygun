@@ -7,7 +7,7 @@ type intersection struct {
 	position, normal mgl32.Vec3
 }
 
-func (i intersection) ray() ray {
+func (i intersection) mirror() ray {
 	return ray{
 		origin:    i.position,
 		direction: i.normal,
