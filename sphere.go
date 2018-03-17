@@ -14,15 +14,15 @@ var _ sceneObject = sphere{}
 func (s sphere) intersect(r ray) *intersection {
 	offset := r.origin.Sub(s.center)
 	a := r.direction.Dot(r.direction)
-	b := 2 * r.direction.Dot(offset)
+	b := r.direction.Dot(offset)
 	c := offset.Dot(offset) - s.radius*s.radius
-	discriminant := b*b - 4*a*c
+	discriminant := b*b - a*c
 	if discriminant <= 0 {
 		return nil
 	}
 	for _, t := range []float32{
-		(-b - sqrt(discriminant)) / (2 * a),
-		(-b + sqrt(discriminant)) / (2 * a),
+		(-b - sqrt(discriminant)) / a,
+		(-b + sqrt(discriminant)) / a,
 	} {
 		// TODO: Come up with a better way to deal with the case where the
 		// "surface tangent" is slightly inside the sphere due to numerical
