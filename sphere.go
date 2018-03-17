@@ -7,6 +7,8 @@ import (
 type sphere struct {
 	center mgl32.Vec3
 	radius float32
+
+	m material
 }
 
 var _ sceneObject = sphere{}
@@ -34,6 +36,8 @@ func (s sphere) intersect(r ray) *intersection {
 				t:        t,
 				position: position,
 				normal:   normal,
+
+				m: s.m,
 			}
 		}
 	}

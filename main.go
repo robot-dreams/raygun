@@ -19,9 +19,15 @@ func main() {
 			sphere{
 				center: mgl32.Vec3{0, 0, -1},
 				radius: 0.5,
+				m: &diffuser{
+					attenuation: ones3.Mul(0.5),
+				},
 			},
 			sphere{
 				center: mgl32.Vec3{0, -100.5, -1},
+				m: &reflector{
+					attenuation: ones3,
+				},
 				radius: 100,
 			},
 		},
@@ -42,6 +48,7 @@ func main() {
 				color = color.Add(s.color(r))
 			}
 			color = color.Mul(1 / float32(subpixelSamples))
+			// color = gamma2(color)
 			ir := int(255.99 * color[0])
 			ig := int(255.99 * color[1])
 			ib := int(255.99 * color[2])

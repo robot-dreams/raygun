@@ -25,8 +25,8 @@ func (s scene) color(r ray) mgl32.Vec3 {
 		}
 	}
 	if closest != nil {
-		return s.color(closest.diffuse()).Mul(0.5)
-		// return closest.normal.Add(white).Mul(0.5)
+		direction, attenuation := closest.scatter(r.direction)
+		return mul3(s.color(direction), attenuation)
 	} else {
 		return s.backgroundColor(r)
 	}
