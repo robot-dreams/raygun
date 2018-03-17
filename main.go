@@ -20,15 +20,29 @@ func main() {
 				center: mgl32.Vec3{0, 0, -1},
 				radius: 0.5,
 				m: &diffuser{
-					attenuation: ones3.Mul(0.5),
+					attenuation: mgl32.Vec3{0.8, 0.3, 0.3},
 				},
 			},
 			sphere{
 				center: mgl32.Vec3{0, -100.5, -1},
-				m: &reflector{
-					attenuation: ones3,
+				m: &diffuser{
+					attenuation: mgl32.Vec3{0.8, 0.8, 0},
 				},
 				radius: 100,
+			},
+			sphere{
+				center: mgl32.Vec3{1, 0, -1},
+				radius: 0.5,
+				m: &reflector{
+					attenuation: mgl32.Vec3{0.8, 0.6, 0.2},
+				},
+			},
+			sphere{
+				center: mgl32.Vec3{-1, 0, -1},
+				radius: 0.5,
+				m: &reflector{
+					attenuation: mgl32.Vec3{0.8, 0.8, 0.8},
+				},
 			},
 		},
 	}
