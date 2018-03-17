@@ -10,6 +10,10 @@ func main() {
 	nx := 200
 	ny := 100
 	fmt.Printf("P3\n%d %d\n255\n", nx, ny)
+	b := background{
+		top:    blue,
+		bottom: white,
+	}
 	for j := ny - 1; j >= 0; j-- {
 		for i := 0; i < nx; i++ {
 			r := ray{
@@ -19,7 +23,7 @@ func main() {
 					-1,
 				},
 			}
-			col := r.color()
+			col := b.color(r)
 			ir := int(255.99 * col[0])
 			ig := int(255.99 * col[1])
 			ib := int(255.99 * col[2])
