@@ -15,8 +15,12 @@ func main() {
 		bottom: white,
 		sceneObjects: []sceneObject{
 			sphere{
-				center: mgl32.Vec3{0, 0, -5},
-				radius: 2,
+				center: mgl32.Vec3{0, 0, -1},
+				radius: 0.5,
+			},
+			sphere{
+				center: mgl32.Vec3{0, -100.5, -1},
+				radius: 100,
 			},
 		},
 	}
