@@ -8,12 +8,17 @@ type material interface {
 
 type reflector struct {
 	attenuation mgl32.Vec3
+	blur        float32
 }
 
 var _ material = (*reflector)(nil)
 
 func (r *reflector) scatter(i *intersection, in mgl32.Vec3) (mgl32.Vec3, mgl32.Vec3) {
-	return in.Sub(i.normal.Mul(2 * in.Dot(i.normal))), r.attenuation
+	direction := in.Sub(i.normal.Mul(2 * in.Dot(i.normal)))
+	if r.blur > 0 {
+		direction = direction.Add(randomInUnitBall().Mul(r.blur))
+	}
+	return direction, r.attenuation
 }
 
 type diffuser struct {

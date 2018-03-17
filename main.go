@@ -35,6 +35,7 @@ func main() {
 				radius: 0.5,
 				m: &reflector{
 					attenuation: mgl32.Vec3{0.8, 0.6, 0.2},
+					blur:        1,
 				},
 			},
 			sphere{
@@ -42,6 +43,7 @@ func main() {
 				radius: 0.5,
 				m: &reflector{
 					attenuation: mgl32.Vec3{0.8, 0.8, 0.8},
+					blur:        0.3,
 				},
 			},
 		},
