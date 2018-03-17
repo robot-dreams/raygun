@@ -27,19 +27,3 @@ func (s scene) color(r ray) mgl32.Vec3 {
 	}
 	return s.backgroundColor(r)
 }
-
-type intersection struct {
-	t                float32
-	position, normal mgl32.Vec3
-}
-
-func (i intersection) ray() ray {
-	return ray{
-		origin:    i.position,
-		direction: i.normal,
-	}
-}
-
-type sceneObject interface {
-	intersect(r ray) *intersection
-}
