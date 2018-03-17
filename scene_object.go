@@ -14,6 +14,14 @@ func (i intersection) mirror() ray {
 	}
 }
 
+func (i intersection) diffuse() ray {
+	target := i.position.Add(i.normal).Add(randomInUnitBall())
+	return ray{
+		origin:    i.position,
+		direction: target.Sub(i.position),
+	}
+}
+
 type sceneObject interface {
 	intersect(r ray) *intersection
 }
