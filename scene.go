@@ -15,15 +15,22 @@ func (s scene) backgroundColor(r ray) mgl32.Vec3 {
 }
 
 func (s scene) color(r ray) mgl32.Vec3 {
+	var closest *intersection
 	for _, o := range s.sceneObjects {
 		i := o.intersect(r)
 		if i != nil {
-			/*
-				n := sphere.reflect(r).direction.Normalize()
-				return n.Add(white).Mul(0.5)
-			*/
-			return s.color(i.ray())
+			if closest == nil || i.t < closest.t {
+				closest = i
+			}
 		}
 	}
-	return s.backgroundColor(r)
+	if closest != nil {
+		/*
+			n := sphere.reflect(r).direction.Normalize()
+			return n.Add(white).Mul(0.5)
+		*/
+		return s.color(closest.ray())
+	} else {
+		return s.backgroundColor(r)
+	}
 }
