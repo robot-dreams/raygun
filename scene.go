@@ -14,7 +14,10 @@ func (s scene) backgroundColor(r ray) mgl32.Vec3 {
 	return s.top.Mul(t).Add(s.bottom.Mul(1 - t))
 }
 
-func (s scene) color(r ray) mgl32.Vec3 {
+func (s scene) color(r ray, remainingBounces int) mgl32.Vec3 {
+	if remainingBounces == 0 {
+		return s.backgroundColor(r)
+	}
 	var closest *intersection
 	for _, o := range s.sceneObjects {
 		i := o.intersect(r)
@@ -26,7 +29,7 @@ func (s scene) color(r ray) mgl32.Vec3 {
 	}
 	if closest != nil {
 		direction, attenuation := closest.scatter(r.direction)
-		return mul3(s.color(direction), attenuation)
+		return mul3(s.color(direction, remainingBounces-1), attenuation)
 	} else {
 		return s.backgroundColor(r)
 	}

@@ -45,7 +45,7 @@ func main() {
 						-1,
 					},
 				}
-				color = color.Add(s.color(r))
+				color = color.Add(s.color(r, maxBounces))
 			}
 			color = color.Mul(1 / float32(subpixelSamples))
 			// color = gamma2(color)
