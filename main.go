@@ -8,8 +8,8 @@ import (
 )
 
 func main() {
-	nx := 800
-	ny := 400
+	nx := 200
+	ny := 100
 	subpixelSamples := 100
 	fmt.Printf("P3\n%d %d\n255\n", nx, ny)
 	s := scene{
