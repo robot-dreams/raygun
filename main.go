@@ -13,8 +13,8 @@ func main() {
 	s := scene{
 		top:    blue,
 		bottom: white,
-		spheres: []sphere{
-			{
+		sceneObjects: []sceneObject{
+			sphere{
 				center: mgl32.Vec3{0, 0, -5},
 				radius: 2,
 			},

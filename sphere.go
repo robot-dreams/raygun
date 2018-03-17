@@ -9,7 +9,9 @@ type sphere struct {
 	radius float32
 }
 
-func (s sphere) intersections(r ray) []mgl32.Vec3 {
+var _ sceneObject = sphere{}
+
+func (s sphere) intersect(r ray) *intersection {
 	offset := r.origin.Sub(s.center)
 	a := r.direction.Dot(r.direction)
 	b := 2 * r.direction.Dot(offset)
@@ -18,7 +20,6 @@ func (s sphere) intersections(r ray) []mgl32.Vec3 {
 	if discriminant <= 0 {
 		return nil
 	}
-	var result []mgl32.Vec3
 	for _, t := range []float32{
 		(-b - sqrt(discriminant)) / (2 * a),
 		(-b + sqrt(discriminant)) / (2 * a),
@@ -27,21 +28,14 @@ func (s sphere) intersections(r ray) []mgl32.Vec3 {
 		// "surface tangent" is slightly inside the sphere due to numerical
 		// accuracy issues.
 		if t*r.direction.Len() > 1e-3 {
-			result = append(result, r.pointAtParameter(t))
+			position := r.pointAtParameter(t)
+			normal := position.Sub(s.center).Normalize()
+			return &intersection{
+				t:        t,
+				position: position,
+				normal:   normal,
+			}
 		}
 	}
-	return result
-}
-
-func (s sphere) intersects(r ray) bool {
-	return len(s.intersections(r)) > 0
-}
-
-// Precondition: s.intersects(r)
-func (s sphere) reflect(r ray) ray {
-	tangent := s.intersections(r)[0]
-	return ray{
-		origin:    tangent,
-		direction: tangent.Sub(s.center),
-	}
+	return nil
 }
