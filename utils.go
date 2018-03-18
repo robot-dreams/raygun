@@ -48,14 +48,6 @@ func randomInUnitBall() mgl32.Vec3 {
 	}
 }
 
-func gamma2(color mgl32.Vec3) mgl32.Vec3 {
-	return mgl32.Vec3{
-		sqrt(color[0]),
-		sqrt(color[1]),
-		sqrt(color[2]),
-	}
-}
-
 func mul3(u, v mgl32.Vec3) mgl32.Vec3 {
 	return mgl32.Vec3{
 		u[0] * v[0],

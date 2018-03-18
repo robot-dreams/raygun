@@ -12,5 +12,5 @@ var (
 
 	black = zero3
 	white = ones3
-	blue  = mgl32.Vec3{0.5, 0.7, 1}
+	blue  = mgl32.Vec3{0.3, 0.6, 1}
 )

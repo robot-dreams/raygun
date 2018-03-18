@@ -17,16 +17,17 @@ func main() {
 		bottom: white,
 		sceneObjects: []sceneObject{
 			sphere{
-				center: mgl32.Vec3{0, 0, -1},
-				radius: 0.5,
+				center: mgl32.Vec3{0, -0.1, -1},
+				radius: 0.45,
 				m: &diffuser{
-					attenuation: mgl32.Vec3{0.8, 0.3, 0.3},
+					attenuation: mgl32.Vec3{0.9, 0.2, 0.1},
 				},
 			},
 			sphere{
 				center: mgl32.Vec3{0, -100.5, -1},
-				m: &diffuser{
-					attenuation: mgl32.Vec3{0.8, 0.8, 0},
+				m: &reflector{
+					attenuation: mgl32.Vec3{0.6, 0.7, 0.6},
+					blur:        1,
 				},
 				radius: 100,
 			},
@@ -39,16 +40,16 @@ func main() {
 				},
 			},
 			sphere{
-				center: mgl32.Vec3{-1, 0, -1},
-				radius: 0.5,
+				center: mgl32.Vec3{0.5, -0.25, -0.25},
+				radius: 0.25,
 				m: &refractor{
 					attenuation: ones3,
 					n:           1.5,
 				},
 			},
 			sphere{
-				center:   mgl32.Vec3{-1, 0, -1},
-				radius:   0.4,
+				center:   mgl32.Vec3{0.5, -0.25, -0.25},
+				radius:   0.2,
 				inverted: true,
 				m: &refractor{
 					attenuation: ones3,
@@ -58,10 +59,10 @@ func main() {
 		},
 	}
 	c := newCamera(
-		mgl32.Vec3{3, 3, 2},
+		mgl32.Vec3{-3, 1, 3},
 		mgl32.Vec3{0, 0, -1},
 		mgl32.Vec3{0, 1, 0},
-		20,
+		25,
 		float32(nx)/float32(ny),
 		0)
 	for j := ny - 1; j >= 0; j-- {
@@ -74,7 +75,6 @@ func main() {
 				color = color.Add(s.color(r, maxBounces))
 			}
 			color = color.Mul(1 / float32(subpixelSamples))
-			// color = gamma2(color)
 			ir := int(255.99 * color[0])
 			ig := int(255.99 * color[1])
 			ib := int(255.99 * color[2])
