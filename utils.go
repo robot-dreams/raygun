@@ -19,15 +19,29 @@ func tan(x float32) float32 {
 	return float32(math.Tan(math.Pi * float64(x) / 180))
 }
 
+func randomInUnitLine() float32 {
+	return 2*rand.Float32() - 1
+}
+
+func randomInUnitDisk() mgl32.Vec2 {
+	for {
+		candidate := mgl32.Vec2{
+			randomInUnitLine(),
+			randomInUnitLine(),
+		}
+		if candidate.Len() <= 1 {
+			return candidate
+		}
+	}
+}
+
 func randomInUnitBall() mgl32.Vec3 {
 	for {
 		candidate := mgl32.Vec3{
-			rand.Float32(),
-			rand.Float32(),
-			rand.Float32(),
+			randomInUnitLine(),
+			randomInUnitLine(),
+			randomInUnitLine(),
 		}
-		candidate = candidate.Mul(2)
-		candidate = candidate.Sub(ones3)
 		if candidate.Len() <= 1 {
 			return candidate
 		}

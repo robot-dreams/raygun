@@ -58,11 +58,12 @@ func main() {
 		},
 	}
 	c := newCamera(
-		mgl32.Vec3{-2, 2, 1},
+		mgl32.Vec3{3, 3, 2},
 		mgl32.Vec3{0, 0, -1},
 		mgl32.Vec3{0, 1, 0},
-		30,
-		float32(nx)/float32(ny))
+		20,
+		float32(nx)/float32(ny),
+		0)
 	for j := ny - 1; j >= 0; j-- {
 		for i := 0; i < nx; i++ {
 			color := black
