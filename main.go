@@ -57,10 +57,12 @@ func main() {
 			},
 		},
 	}
-	c := camera{
-		fov:    90,
-		aspect: float32(nx) / float32(ny),
-	}
+	c := newCamera(
+		mgl32.Vec3{-2, 2, 1},
+		mgl32.Vec3{0, 0, -1},
+		mgl32.Vec3{0, 1, 0},
+		30,
+		float32(nx)/float32(ny))
 	for j := ny - 1; j >= 0; j-- {
 		for i := 0; i < nx; i++ {
 			color := black
