@@ -6,15 +6,15 @@ I used all of the ideas from the book, but for the most part I tried to avoid lo
 
 ## Usage
 
-Note that the output format is `ppg` (a simple text format for pixel data), NOT `png`!
+Note that the output format is `ppm` (a simple text format for pixel data), NOT `png`!
 
 ```
 go get github.com/go-gl/mathgl/mgl32
 git clone https://github.com/robot-dreams/raygun.git
 cd raygun
 go build
-./raygun > output.ppg
-open output.ppg
+./raygun > output.ppm
+open output.ppm
 ```
 
 ## Sample Output
