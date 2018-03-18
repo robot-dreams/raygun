@@ -15,6 +15,10 @@ func sqrt(x float32) float32 {
 	return float32(math.Sqrt(float64(x)))
 }
 
+func tan(x float32) float32 {
+	return float32(math.Tan(math.Pi * float64(x) / 180))
+}
+
 func randomInUnitBall() mgl32.Vec3 {
 	for {
 		candidate := mgl32.Vec3{

@@ -57,19 +57,17 @@ func main() {
 			},
 		},
 	}
+	c := camera{
+		fov:    90,
+		aspect: float32(nx) / float32(ny),
+	}
 	for j := ny - 1; j >= 0; j-- {
 		for i := 0; i < nx; i++ {
 			color := black
 			for k := 0; k < subpixelSamples; k++ {
 				u := (float32(i) + rand.Float32()) / float32(nx)
 				v := (float32(j) + rand.Float32()) / float32(ny)
-				r := ray{
-					direction: mgl32.Vec3{
-						4*u - 2,
-						2*v - 1,
-						-1,
-					},
-				}
+				r := c.ray(u, v)
 				color = color.Add(s.color(r, maxBounces))
 			}
 			color = color.Mul(1 / float32(subpixelSamples))
