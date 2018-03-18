@@ -8,7 +8,7 @@ I used all of the ideas from the book, but for the most part I tried to avoid lo
 
 If you don't have go installed yet, you can [download the latest version of go from the official website](https://golang.org/dl/).  On Mac OS X, you will also need a recent version of Xcode and the command line tools.
 
-Note that the output format is `ppm` (a simple text format for pixel data), NOT `png`!
+Note that the output format is `ppm` (a simple text format for pixel data).
 
 ```
 # Fetch dependencies.
