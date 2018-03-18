@@ -8,7 +8,8 @@ type sphere struct {
 	center mgl32.Vec3
 	radius float32
 
-	m material
+	inverted bool
+	m        material
 }
 
 var _ sceneObject = sphere{}
@@ -32,6 +33,9 @@ func (s sphere) intersect(r ray) *intersection {
 		if t*r.direction.Len() > 1e-3 {
 			position := r.pointAtParameter(t)
 			normal := position.Sub(s.center).Normalize()
+			if s.inverted {
+				normal = normal.Mul(-1)
+			}
 			return &intersection{
 				t:        t,
 				position: position,

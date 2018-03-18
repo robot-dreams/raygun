@@ -34,16 +34,25 @@ func main() {
 				center: mgl32.Vec3{1, 0, -1},
 				radius: 0.5,
 				m: &reflector{
-					attenuation: mgl32.Vec3{0.8, 0.6, 0.2},
-					blur:        1,
+					attenuation: mgl32.Vec3{0.2, 0.6, 0.8},
+					blur:        0.2,
 				},
 			},
 			sphere{
 				center: mgl32.Vec3{-1, 0, -1},
 				radius: 0.5,
-				m: &reflector{
-					attenuation: mgl32.Vec3{0.8, 0.8, 0.8},
-					blur:        0.3,
+				m: &refractor{
+					attenuation: ones3,
+					n:           1.5,
+				},
+			},
+			sphere{
+				center:   mgl32.Vec3{-1, 0, -1},
+				radius:   0.4,
+				inverted: true,
+				m: &refractor{
+					attenuation: ones3,
+					n:           1.5,
 				},
 			},
 		},
